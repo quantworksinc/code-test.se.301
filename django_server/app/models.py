@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Fruits(models.Model):
+class Fruit(models.Model):
     APPLES = 'ap'
     PINEAPPLES = 'pn'
     ORANGES = 'or'
@@ -12,7 +12,11 @@ class Fruits(models.Model):
         (APPLES, 'Apples'),
         (PINEAPPLES, 'Pineapples'),
         (ORANGES, 'Oranges'),
-        (Bananas, 'Bananas')
+        (BANANAS, 'Bananas')
     )
-    fruit = models.CharField(max_length=2, choices=FRUIT_CHOICES, default=APPLES)
+    fruit_name = models.CharField(max_length=2, choices=FRUIT_CHOICES, default=APPLES)
     quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+    	# this is what will be displayed in Django admin
+    	return str(self.quantity) + " " + self.get_fruit_name_display()
