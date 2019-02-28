@@ -1,27 +1,29 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
+
 class AddFruit extends Component {
   static propTypes = {
-    endpoint: PropTypes.string.isRequired
+    endpoint: PropTypes.string.isRequired,
+    close: PropTypes.func.isRequired
   };
   state = {
-    fruit_name: "",
+    fruit_name: "Apples",
     quantity: "",
   };
   handleChange = e => {
+  	console.log(e.target.value)
     this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = e => {
     e.preventDefault();
-    const { name, quantity } = this.state;
-    const fruit = {"fruit_name" : name, "quantity" : quantity };
-    console.log(fruit);
+    
     const conf = {
       method: "post",
-      body: JSON.stringify(fruit),
+      body: JSON.stringify(this.state),
       headers: new Headers({ "Content-Type": "application/json" })
     };
-    fetch(this.props.endpoint, conf).then(response => console.log(response));
+    fetch(this.props.endpoint, conf).then(response => this.props.close());
   };
   render() {
     const { name, quantity} = this.state;
@@ -31,14 +33,12 @@ class AddFruit extends Component {
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="name"
-                onChange={this.handleChange}
-                value={name}
-                required
-              />
+            <select name='fruit_name' onChange={this.handleChange} value={this.state.fruit_name}>
+			  <option value="Apples">Apples</option>
+			  <option value="Bananas">Bananas</option>
+			  <option selected value="Oranges">Oranges</option>
+			  <option value="Pineapples">Pineapples</option>
+			</select>
             </div>
           </div>
           <div className="field">
@@ -56,7 +56,7 @@ class AddFruit extends Component {
           </div>
           <div className="control">
             <button type="submit" className="button is-info">
-              Send message
+              Add more fruit!
             </button>
           </div>
         </form>
