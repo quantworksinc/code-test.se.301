@@ -1,0 +1,20 @@
+- model: app.fruit
+  pk: 1
+  fields:
+    fruit_name: Apples
+    quantity: 150
+- model: app.fruit
+  pk: 2
+  fields:
+    fruit_name: Oranges
+    quantity: 100
+- model: app.fruit
+  pk: 3
+  fields:
+    fruit_name: Bananas
+    quantity: 200
+- model: app.fruit
+  pk: 4
+  fields:
+    fruit_name: Pineapples
+    quantity: 275
