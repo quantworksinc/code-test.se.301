@@ -17,13 +17,9 @@ class FruitViewSet(ModelViewSet):
 		status = None
 		try:
 			data = json.loads(request.body)
-			print(data)
 			try:
-				print("getting")
 				fruit = Fruit.objects.get(fruit_name=data["fruit_name"])
-				print("not got")
 			except Fruit.DoesNotExist:
-				print("create?")
 				fruit = Fruit.objects.create(fruit_name=data["fruit_name"])
 			fruit.quantity = fruit.quantity + int(data["quantity"])
 			fruit.save()

@@ -12,7 +12,7 @@ class Fruit(models.Model):
         ('Bananas', 'Bananas')
     )
     fruit_name = models.CharField(max_length=10, choices=FRUIT_CHOICES, default='Apples')
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=0)
 
     def __str__(self):
     	# this is what will be displayed in Django admin
