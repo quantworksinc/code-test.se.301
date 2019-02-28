@@ -15,7 +15,7 @@ Core Requirements:
   - has an endpoint to receive requests to retrieve data from the database and return it as JSON
 - The database is:
   - a PostgreSQL database
-  - be pre-seeded with data
+  - pre-seeded with data
 
 The solution has been dockerized. I have used an image of postgres along. The frontend and the api are two separate apps within the same django project. 
 
@@ -32,4 +32,9 @@ Given more time(or less university assignments :( ) I would have ideally liked t
 1. Authorization
 2. Different kinds of data and charts
 3. Logging
+
+P.S: Please excuse my design skills. I am much better at frontend if I have a design in front of me which I need to turn into code.
+
+P.P.S: You can check my Google Summer of Code project over at https://github.com/Cloud-CV/Origami. I was the lead developer for the project from May 2017 - Aug 2018. It was written in Django and React too. It has docker settings for a production environment as well. 
+
 
