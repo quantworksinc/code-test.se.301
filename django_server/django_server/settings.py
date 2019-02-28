@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'app',
     'rest_framework',
     'frontend',
+    'django_nose',
 ]
 
 MIDDLEWARE = [
@@ -78,10 +79,12 @@ WSGI_APPLICATION = 'django_server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
     }
-    
 }
 
 
@@ -116,6 +119,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=app',
+]
 
 
 # Static files (CSS, JavaScript, Images)

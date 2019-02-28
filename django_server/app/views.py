@@ -28,7 +28,3 @@ class FruitViewSet(ModelViewSet):
 			status = response_status.HTTP_400_BAD_REQUEST
 
 		return Response(status=status)
-
-
-def home(request):
-	return render(request, 'index.html')

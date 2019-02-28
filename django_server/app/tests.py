@@ -48,3 +48,11 @@ class FruitTests(TestCase):
 					tested = True
 		if not tested:
 			self.assertEqual(1, 0)
+
+	def test_adding_to_fruit_using_model(self):
+		banana = {"fruit_name": "Bananas", "quantity" : 28}
+		f = Fruit.objects.create(fruit_name=banana["fruit_name"], quantity=banana["quantity"])
+		self.assertTrue(isinstance(f, Fruit))
+		self.assertEqual(f.fruit_name, banana["fruit_name"])
+		self.assertEqual(f.quantity, banana["quantity"])
+		self.assertEqual(f.__str__(), str(banana["quantity"]) + " " + banana["fruit_name"])

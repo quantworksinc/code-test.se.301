@@ -8,4 +8,6 @@ do
 	echo "Waiting for postgres ready..."
 	sleep 2
 done
+python manage.py test
+python manage.py loaddata app/fixtures/fruits.yaml
 python manage.py runserver 0.0.0.0:8000
