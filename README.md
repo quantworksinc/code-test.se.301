@@ -1,31 +1,35 @@
-## Code Test for General Software Engineers
+## Class distribution
 
-This is a code test for general Software Engineers at Quantworks. Consider this an assessment rather than a graded exam. This test helps us gauge a candidate's level of familiarity and comfort with technologies and techniques.
+The web app provides a simple bar chart to represent the class distribution in a classification dataset containing four classes - Apples, Bananas, Oranges, Pineapples. The tool can, with a few changes, be used for similar categorical data. But for now, lets compare some apples to oranges (and bananas and pineapples).
 
 ### Project Description
-Create a very simple data visualization web application.
-
 #### Solution Requirements
 Core Requirements:
-- The web app must:
-  - be built with any popular web application framework
-  - have a bar chart which presents data retrieved from the API
-  - have a data entry form which submits data to the API
-- The API server must:
-  - use an interpreted language such as Python, Node, etc.
-  - have an endpoint to receive requests with data submitted as JSON and record it in the database
-  - have an endpoint to receive requests to retrieve data from the database and return it as JSON
-- The database must:
-  - be a SQL database (we prefer PostgreSQL)
+- The web app is:
+  - built using React + Django
+  - has a bar chart to show the class distribution
+  - has a data entry form which allows you to add more data points and view the changes in real time
+- The API server:
+  - is written in Python + Django
+  - has an endpoint to receive requests with data submitted as JSON and record it in the database
+  - has an endpoint to receive requests to retrieve data from the database and return it as JSON
+- The database is:
+  - a PostgreSQL database
   - be pre-seeded with data
 
-Optional Requirements:
-- the web app, API, and database should each be containerized
-- at least the API server should have unit tests with >= 90% code coverage
-- testing, building, and running should be automated via makefile, shell script, etc.
+The solution has been dockerized. I have used an image of postgres along. The frontend and the api are two separate apps within the same django project. 
 
-Nice-to-have Requirements:
-- user accounts with secure password storage
-- endpoint authorization with JWT
-- machine readable logging for each service
-- very basic health endpoints for each service
+The test coverage for the views (controller) is 96%. Overall the coverage is 82% but that is because of certain lines present in the model description don't get added in coverage even after the model is created. 
+
+To run the project, go to django_server and then type in the following command. 
+
+`docker-compose up`
+
+
+
+Given more time(or less university assignments :( ) I would have ideally liked to add more features like:
+
+1. Authorization
+2. Different kinds of data and charts
+3. Logging
+
