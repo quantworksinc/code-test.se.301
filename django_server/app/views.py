@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from app.models import Fruit
 from app.serializers import FruitSerializer
+from django.http import HttpResponse
 
 # Create your views here.
 class FruitViewSet(ModelViewSet):
@@ -10,3 +11,6 @@ class FruitViewSet(ModelViewSet):
     """
 	queryset = Fruit.objects.all()
 	serializer_class = FruitSerializer
+
+def home(request):
+	return render(request, 'index.html')

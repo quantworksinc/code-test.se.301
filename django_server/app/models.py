@@ -4,17 +4,14 @@ from django.db import models
 
 
 class Fruit(models.Model):
-    APPLES = 'ap'
-    PINEAPPLES = 'pn'
-    ORANGES = 'or'
-    BANANAS = 'bn'
+    
     FRUIT_CHOICES = (
-        (APPLES, 'Apples'),
-        (PINEAPPLES, 'Pineapples'),
-        (ORANGES, 'Oranges'),
-        (BANANAS, 'Bananas')
+        ('Apples', 'Apples'),
+        ('Pineapples', 'Pineapples'),
+        ('Oranges', 'Oranges'),
+        ('Bananas', 'Bananas')
     )
-    fruit_name = models.CharField(max_length=2, choices=FRUIT_CHOICES, default=APPLES)
+    fruit_name = models.CharField(max_length=10, choices=FRUIT_CHOICES, default='Apples')
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
