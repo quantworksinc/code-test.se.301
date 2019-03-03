@@ -1,5 +1,67 @@
 <template>
-  <div>
-    <h1>This is an about page</h1>
-  </div>
+  <v-container fluid fill-height>
+    <v-layout align-start justify-center>
+      <v-flex xs12 sm5 class="revenue-form">
+        <div class="text-xs-center">
+          <h3 class="headline">Update Revenue Form</h3>
+          <br>
+        </div>
+        <v-form v-model="valid">
+          <v-select
+            v-model="month"
+            :items="months"
+            label="Select Month"
+            :rules="monthRules"
+            required
+            mt-2
+          ></v-select>
+          <v-text-field
+            v-model="revenue"
+            label="Set Revenue"
+            append-icon="attach_money"
+            type="number"
+            :rules="revenueRules"
+            required
+            mt-2
+          ></v-text-field>
+          <v-btn block @click="updateRevenue()" :disabled="!valid" color="primary">
+            Update
+          </v-btn>
+        </v-form>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    valid: false,
+    months: ['January', 'February', 'March', 'April',
+      'May', 'June', 'July', 'August',
+      'September', 'October', 'November', 'December'
+    ],
+    month: '',
+    monthRules: [
+      (v) => !!v || 'Month is required'
+    ],
+    revenue: '',
+    revenueRules: [
+      (v) => !!v || 'Revenue is required',
+      (v) => v >= 0 || 'Revenue cannot be less than 0'
+    ]
+  }),
+  methods: {
+    updateRevenue () {
+      this.revenue = parseInt(this.revenue)
+      // Make post request here
+    }
+  }
+}
+</script>
+
+<style>
+  .revenue-form {
+    margin-top: 2rem;
+  }
+</style>
