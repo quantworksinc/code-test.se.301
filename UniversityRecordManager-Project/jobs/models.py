@@ -13,7 +13,6 @@ class Record(models.Model):
     grad_ms_year_one = models.IntegerField()
     grad_ms_year_two = models.IntegerField()
 
-    # u_grad_freshmen = models.IntegerField()
     def __iter__(self):
         for field in self._meta.get_fields():
             value = getattr(self, field.name, None)
