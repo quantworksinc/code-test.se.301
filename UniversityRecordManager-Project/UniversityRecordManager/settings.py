@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Added the app that will serve the main purpose.
     'jobs',
+    'bootstrap_modal_forms',
 ]
 
 MIDDLEWARE = [

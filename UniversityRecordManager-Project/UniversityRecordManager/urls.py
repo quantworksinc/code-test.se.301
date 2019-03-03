@@ -24,7 +24,6 @@ import jobs.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', jobs.views.index),
     path('', jobs.views.homepage, name='home'),
-    # path('', jobs.views.chart_work, name='home'),
+    path('update/', jobs.views.UpdateFormView.as_view(), name='update_record'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

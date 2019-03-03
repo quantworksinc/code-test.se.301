@@ -5,7 +5,7 @@ from django.db import models
 
 # Model to store records into the db.
 class Record(models.Model):
-    record_year = models.IntegerField()
+    record_year = models.IntegerField(unique=True)
     u_grad_freshmen = models.IntegerField()
     u_grad_sophomore = models.IntegerField()
     u_grad_junior = models.IntegerField()

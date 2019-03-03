@@ -11,9 +11,10 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/cover/">
 
     <!-- Bootstrap core CSS -->
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>#}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 
 
     <style>
@@ -36,11 +37,24 @@
     <link href="cover.css" rel="stylesheet">
 </head>
 {% load static %}
+
+<script src="{% static "js/jquery-3.3.1.js" %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
+<script src="{% static "js/jquery.bootstrap.modal.forms.js" %}"></script>
+
 {#// Include FusionCharts core  file#}
 <script type="text/javascript" src="{% static "fusioncharts.js" %}"></script>
 {#// Include FusionCharts Theme file#}
 <script type="text/javascript" src="{% static "themes/fusioncharts.theme.carbon.js" %}"></script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".update-record") .modalForm({
+            // Form template to display on call.
+            formURL: "{% url 'update_record' %}"
+        });
+    });
+</script>
 <body class="text-center">
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto">
@@ -75,6 +89,20 @@
 </div>
 <div id="chart_work-container">
     {{ output|safe }}
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+
+<div>
+    {% if update_flag %}
+        <button class="update-record btn btn-primary" type="button" name="button">Add Records</button>
+    {% endif %}
 </div>
 
 </form>
