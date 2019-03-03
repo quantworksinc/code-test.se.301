@@ -11,10 +11,15 @@ Core Requirements:
   - be built with any popular web application framework
   - have a bar chart which presents data retrieved from the API
   - have a data entry form which submits data to the API
-- The API server must:
-  - use an interpreted language such as Python, Node, etc.
-  - have an endpoint to receive requests with data submitted as JSON and record it in the database
-  - have an endpoint to receive requests to retrieve data from the database and return it as JSON
+
+- The server:
+  - Is written in Node.js
+  - Uses RESTful APIs to send and receive data
+  - Uses JSON format for transactions
+  - Stores data with PostgreSQL database
+  - Returns JSON data of bar chart to client
+  - Receives form data from client
+ 
 - The database must:
   - be a SQL database (we prefer PostgreSQL)
   - be pre-seeded with data

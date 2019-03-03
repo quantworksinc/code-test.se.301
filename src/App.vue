@@ -1,35 +1,58 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>open_in_new</v-icon>
-      </v-btn>
+    <v-navigation-drawer
+      v-model="drawer"
+      fixed
+      app
+      width="220"
+    >
+      <v-list v-for="item in menu" :key="item.title">
+        <v-list-tile @click="navigate(item.link)">
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+    <v-toolbar color="primary" dark fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>NC State Dining Services</v-toolbar-title>
     </v-toolbar>
-
     <v-content>
-      <router-view/>
+      <v-fade-transition mode="out-in">
+        <router-view></router-view>
+      </v-fade-transition>
     </v-content>
   </v-app>
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  data () {
-    return {
-      //
+  data: () => ({
+    drawer: null,
+    menu: [{
+      title: 'Revenue',
+      icon: 'attach_money',
+      link: 'revenue'
+    }, {
+      title: 'Form',
+      icon: 'create',
+      link: 'entry-form'
+    }]
+  }),
+  methods: {
+    navigate (link) {
+      this.$router.push({ name: link })
     }
   }
 }
 </script>
+
+<style>
+  html, body {
+    overflow: auto !important;
+  }
+</style>
