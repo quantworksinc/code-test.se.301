@@ -1,0 +1,23 @@
+<%= form_with(model: foot, local: true) do |form| %>
+  <% if foot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(foot.errors.count, "error") %> prohibited this foot from being saved:</h2>
+
+      <ul>
+      <% foot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div id="a">
+    <%= form.label :number  %>
+    <%= form.number_field :number %>
+
+    <p><%= form.label :date_entry %></p>
+    <%= form.date_select :date_entry %>
+<br><br>
+    <p> <%= form.submit %></p>
+  </div>
+<% end %>
