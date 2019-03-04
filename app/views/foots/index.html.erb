@@ -1,0 +1,97 @@
+<%require 'date' %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<br><br>
+<div class="container">
+
+  <canvas id="myChart"> </canvas>
+</div>
+<script>
+
+
+    let myChart=document.getElementById('myChart').getContext('2d');
+    Chart.defaults.global.defaultFontFamily='Lato';
+    Chart.defaults.global.defaultFontSize=18;
+    Chart.defaults.global.defaultFontColor= '#777';
+    <%@a=Foot.pluck(:number)
+      @b=Foot.pluck(:date_entry)
+
+      @c=[0,0,0,0,0,0,0,0,0,0,0,0]
+      @d=Foot.all
+      @d.each do |month|
+         puts month.date_entry.mon
+        month_no= month.date_entry.mon
+        @c[month_no-1]=@c[month_no-1]+month.number
+      end
+    %>
+    var number = JSON.parse('<%= @c.to_json.html_safe -%>');
+    var date = JSON.parse('<%= @b.to_json.html_safe -%>');
+
+
+
+    let footchart = new Chart(myChart,{
+        type:'bar',
+        data:{
+            labels:['Jan','Feb','March','April','May','June','July','Aug','Sep','Oct','Nov','Dec'],
+            datasets:[{
+                label:'Footfall',
+                data:number,
+                backgroundColor:[
+                    'rgb(65,105,225)',
+                    'rgb(0,139,139)',
+                    'rgb(220,20,60)',
+                    'rgb(128,0,128)',
+                    'rgb(46,139,87)',
+                    'rgb(255,215,0)',
+                    'rgb(85,107,47)',
+                    'rgb(32,178,170)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255,69,0)',
+                    'rgb(255,105,180)',
+                    'rgb(105,105,105)'
+                ],
+                borderWidth:1,
+                borderColor:'#777',
+                hoverBorderWidth: 3,
+                hoverBorderColor: '#000'
+
+            }]
+        },
+        options:{
+            title:{
+                display: true,
+                text:'Footfalls in Wallmart',
+                fontSize:25
+            },
+            legend:{
+                display:false
+            },
+            layour:{
+                padding:{
+                    left:50,
+                    right:0,
+                    bottom:0,
+                    top:0
+                }
+            },
+            tooltips:{
+                enabled:true
+            },
+            scales:{
+                yAxes:[
+                    {
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                ]
+            }
+
+        }
+    })
+</script>
+
+<br>
+
+<h1><%= link_to 'Enter Footfall', new_foot_path,class: "btn btn-light" %></h1>
