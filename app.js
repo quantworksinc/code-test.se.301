@@ -1,18 +1,25 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const path = require('path')
-const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
-const indexRouter = require('./src/api/index')
+const revenue = require('./src/api/revenue')
 
 const app = express()
 
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(cookieParser())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })
+)
 app.use(express.static(path.join(__dirname, 'dist')))
 
-app.use('/', indexRouter)
+app
+  .get('/revenue', revenue.getRevenue)
+  .post('/revenue', revenue.updateRevenue)
+  .get('/', function (req, res, next) {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+  })
 
 module.exports = app

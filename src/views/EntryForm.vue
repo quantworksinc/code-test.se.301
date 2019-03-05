@@ -28,15 +28,39 @@
             Update
           </v-btn>
         </v-form>
+        <br>
+        <div>
+          <v-alert
+            :value="success"
+            type="success"
+            transition="scale-transition"
+            dismissible="true"
+          >
+            Revenue updated successfully!
+          </v-alert>
+        </div>
+        <div>
+          <v-alert
+            :value="error"
+            type="error"
+            transition="scale-transition"
+            dismissible="true"
+          >
+            Failed to update revenue. Please try again.
+          </v-alert>
+        </div>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     valid: false,
+    success: false,
+    error: false,
     months: ['January', 'February', 'March', 'April',
       'May', 'June', 'July', 'August',
       'September', 'October', 'November', 'December'
@@ -53,8 +77,17 @@ export default {
   }),
   methods: {
     updateRevenue () {
-      this.revenue = parseInt(this.revenue)
-      // Make post request here
+      axios.post('/revenue', {
+        month: this.month,
+        revenue: parseInt(this.revenue)
+      }).then((response) => {
+        this.success = true
+        this.error = false
+      }).catch((error) => {
+        console.log(error)
+        this.success = false
+        this.error = true
+      })
     }
   }
 }
