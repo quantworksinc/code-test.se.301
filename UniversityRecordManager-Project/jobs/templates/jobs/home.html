@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Cover Template · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/cover/">
+
+    <!-- Bootstrap core CSS -->
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>#}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+</head>
+{% load static %}
+
+<script src="{% static "js/jquery-3.3.1.js" %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
+<script src="{% static "js/jquery.bootstrap.modal.forms.js" %}"></script>
+
+{#// Include FusionCharts core  file#}
+<script type="text/javascript" src="{% static "fusioncharts.js" %}"></script>
+{#// Include FusionCharts Theme file#}
+<script type="text/javascript" src="{% static "themes/fusioncharts.theme.carbon.js" %}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".update-record") .modalForm({
+            // Form template to display on call.
+            formURL: "{% url 'update_record' %}"
+        });
+    });
+</script>
+<body class="text-center">
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h1 class="masthead-brand">North Carolina State University</h1>
+        </div>
+    </header>
+    <br>
+
+    <main role="main" class="inner cover">
+        <h2 class="cover-heading">Welcome to Student Data Center.</h2><br>
+        <p class="lead">Here, on this page, you can see how the trend of Students has grown at NC State.</p>
+    </main>
+    <p class="lead">
+        Select the year to view our student population under each subcategory for that year:
+    </p>
+
+    <form method="post" action="">{% csrf_token %}
+        <div class="dropdown">
+            <select id="record_year" name="data_year" style="align-content: center" class="dropdown">
+                <option value="{{ year }}" selected="selected">{{ "Select Year" }}</option>
+                {% for year in year_data %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+            <input class="btn btn-sm btn-primary" type="submit" value="Submit">
+        </div>
+    </form>
+    <footer class="mastfoot mt-auto">
+        <div class="inner"></div>
+    </footer>
+</div>
+<div id="chart_work-container">
+    {{ output|safe }}
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+
+<div>
+    {% if update_flag %}
+        <button class="update-record btn btn-primary" type="button" name="button">Add Records</button>
+    {% endif %}
+</div>
+
+</form>
+</body>
+</html>
