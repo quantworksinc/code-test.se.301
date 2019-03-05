@@ -25,7 +25,7 @@ class UpdateFormView(PassRequestMixin, SuccessMessageMixin, generic.CreateView):
     form_class = UpdateForm
     success_message = 'Record Updated!'
     success_url = reverse_lazy('home')
-    
+
 
 # View for Homepage
 def homepage(request):

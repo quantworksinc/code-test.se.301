@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 import jobs.views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', jobs.views.homepage, name='home'),
     path('update/', jobs.views.UpdateFormView.as_view(), name='update_record'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
