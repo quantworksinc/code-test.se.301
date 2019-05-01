@@ -1,0 +1,30 @@
+/* app css stylesheet */
+
+html,
+body {
+  font-size: 12px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+i.material-icons {
+  font-family: 'Material Icons' !important;
+  font-size: 1.5em;
+}
+
+.navbar {
+  background-color: #673AB7;
+}
+
+.navbar-title {
+  color: white;
+}
+
+.submit-button {
+  background-color: #2ec9ad;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #208c79;
+  color: white;
+}

@@ -1,0 +1,89 @@
+<p></p>
+
+<!--Is displayed only when there is an error while creating death-->
+<div class="row justify-content-end" ng-if="showDeathError">
+	<div class="col-lg-4">
+		<div class="alert alert-danger alert-dismissible fade show">
+		<p>Oops! Failed to add a new death, please try again!</p>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="toggleDeathError()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+	</div>
+</div>
+
+<!--Is displayed only on success while creating death-->
+<div class="row justify-content-end" ng-if="showDeathSuccess">
+	<div class="col-lg-4">
+		<div class="alert alert-success alert-dismissible fade show">
+		<p>Death was added successfully!</p>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="toggleDeathSuccess()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<!--Form is displayed across the screen for all screens except >=XL-->
+	<div class="col-12 col-xl-4 my-2">
+		<div class="card h-100">
+			<div class="card-header">
+				<div class="d-flex flex-row align-items-center">
+					<i class="material-icons text-muted">person_add</i>
+					<span class="pl-2 text-muted font-weight-bold">Add Character Death</span>
+				</div>
+			</div>
+			<!--$scope variable formData is a json object which has all the properties name, killedBy, seasonDied, epD-->
+			<div class="card-body overflow-scroll h-100 d-block">
+				<form class="mx-auto" name="createDeathForm">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control form-control-lg" id="name" ng-model="formData.name" required>
+					</div>
+					<div class="form-group">
+						<label for="killedBy">Slayer</label>
+						<input type="text" class="form-control form-control-lg" id="killedBy" ng-model="formData.killedBy" required> 
+					</div>
+					<div class="form-group">
+						<label for="seasonDied">Season</label>
+						<select class="form-control form-control-lg" id="seasonDied" ng-model="formData.seasonDied" required>
+							<option ng-repeat="season in listOfSeasons" value="{{season}}">Season {{ season }}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="episodeDied">Episode</label>
+						<select class="form-control form-control-lg" id="episodeDied" ng-model="formData.episodeDied" required>
+							<option ng-repeat="episode in listOfEpisodes">{{ episode }}</option>
+						</select>
+					</div>
+                </form>
+                <div class="row justify-content-center pt-4">
+                    <div class="col-6">
+                        <button class="btn submit-button btn-block" ng-click="createDeath()" ng-disabled="createDeathForm.$invalid">Valar Morghulis</button>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+
+	<!--Graph is displayed across the screen for all screens except >=XL-->
+	<div class="col-12 col-xl-8 my-2">
+		<div class="card h-100">
+			<div class="card-header d-flex flex-row align-items-center justify-content-between">
+				<div class="d-flex flex-row align-items-center">
+					<i class="material-icons text-muted">bar_chart</i>
+					<span class="pl-2 text-muted font-weight-bold">Deaths by Season</span>
+				</div>
+			</div>
+			<div class="card-body overflow-scroll h-100 d-block">
+				<canvas class="chart chart-bar" chart-data="deathCount" chart-labels="labels" chart-options="options">
+				</canvas>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
