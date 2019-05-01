@@ -27,7 +27,7 @@ Navigate to ```WebApp``` folder and install the AngularJs dependencies by execut
 ```sh
 $ npm install
 ```
-Install PostgreSQL (version 10)
+Install PostgreSQL (version 10.7)
 
 Reference link for postgreSQL installation: [PostgreSQL](https://www.postgresql.org/download/windows/)
 

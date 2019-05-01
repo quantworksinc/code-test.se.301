@@ -16,5 +16,5 @@ app.get('/get-death', dbconn.getUsers);
 app.post('/add-death',dbconn.addDeaths);
 
 app.listen(3000, function () {
-  console.log('My Web App');
+  console.log('API Server is up and running!');
 });
