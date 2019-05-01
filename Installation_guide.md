@@ -47,7 +47,7 @@ $ \c postgres
 ```
 ### Running the application
 
-Ensure the password is same as the one in postgreSQL in query.js 
+Ensure the password is same as the one in postgreSQL in ```APIserver/query.js``` 
 ```sh
 const pool = new Pool({
   user: 'postgres',
